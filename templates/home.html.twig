@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    
+<div class="container-fluid pageComplete">
+
+  <div class="col-12 d-flex flex-column align-items-center justify-content-center" style="height:55vh;">
+    <div class="rouge:hover">
+      <h1 class="rouge">Frédéric Vaz Vieira</h1>
+    </div>
+    <div class="vert:hover">
+      <p class="vert">Junior Web Developer</p>
+    </div>
+  </div>
+<div class="col-12 d-flex align-items-start justify-content-around" style="height:45vh;">
+
+                       {% for category in categories %}
+
+                          <div class="card mb-3 ombre" style="max-width: 28rem; height:20rem;">
+                            <div class="card-header">{{ category.name }}</div>
+                                <div class="card-body text-dark d-flex justify-content-around">
+                                    <h5 class="card-title"></h5>
+                                    <img src="{{ category.image }}" class="img-fluid icon" alt="Responsive image">
+                                    <p class="card-text"></p>
+                                </div>
+                            </div>
+
+                       {% endfor %}
+                
+  </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+<div class="jumbotron d-flex justify-content-around align-items-center" style="height:80vh;">
+
+    {% for skill in skills %}
+            
+    <div class="card" style="width:18rem;height:30rem">
+            <img class="card-img-center" src="{{ skill.image }}" alt="">
+        <div class="card-body">
+            <p class="card-text">{{ skill.name }}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+   
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Portfolio Frédéric Vaz Vieira{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" >
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+       
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('daschboard_choix',{'name':'category'}) }}">Gestion category</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('daschboard_choix',{'name':'skill'}) }}">Gestion Skills</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('daschboard_choix',{'name':'techno'}) }}">Gestion Technos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('daschboard_choix',{'name':'project'}) }}">Gestion Projets</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('daschboard') }}">Daschboard</a>
+            </li>
+            </ul>
+            </div>
+        </nav> 
+        
+        
+        {% block body %}
+        
+        
+        
+    
+        
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+
+
+    </body>
+</html>

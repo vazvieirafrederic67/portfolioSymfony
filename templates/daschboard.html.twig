@@ -1,0 +1,172 @@
+{% extends 'baseDaschboard.html.twig' %}
+
+{% block body %}
+
+
+
+{% if name is defined and name == "category" %}
+
+
+        
+        <div class="container-fluid d-flex">
+            <div class="col-3">
+                    <div class="col-5 form m-4 rounded">
+                      <h2 class="text-center" style="font-style: italic;">Insertion Catégories</h2>
+                      {{ form(categoryForm) }}
+                    </div>
+            </div>
+            <div class="container col-9">
+                    <table class="table category">
+                        <thead>
+                          <tr>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Category Image</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in categories %}
+                            <tr>
+                              <td>{{ category.name }}</td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+
+
+
+{%  endif %}
+
+{% if name is defined and name == "skill" %}
+
+
+        <div class="container-fluid d-flex">
+            <div class="col-3">
+                <div class="col-5 form m-4 rounded">
+                  <h2 class="text-center" style="font-style: italic;">Insertion Skills</h2>
+                  {{ form(skillForm) }}
+                </div>
+            </div>
+
+            <div class="container col-9">
+            <table class="table skill">
+                <thead>
+                  <tr>
+                    <th scope="col">Skill Name</th>
+                    <th scope="col">Skill Description</th>
+                    <th scope="col">Skill Image</th>
+                    <th scope="col">Technos</th>
+                    <th scope="col">Projects</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for skill in skills %}
+                    <tr>
+                      <td>{{ skill.name }}</td>
+                      <td>{{ skill.description }}</td>
+                      <td><img height="50vh;" width="50vw;" alt="" src="{{ skill.image }}"></td>
+                      <td>{{ skill.techno.name }}</td>
+                      {% for projects in skill.projects %}
+                      <td>{{projects.name}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+{%  endif %}
+
+{% if name is defined and name == "techno" %}
+
+        <div class="container-fluid d-flex">
+                <div class="container col-3">
+                  <div class="col-6 form m-4 rounded">
+                    <h2 class="text-center" style="font-style: italic;">Insertion Technos</h2>
+                    {{ form(technoForm) }}
+                  </div>    
+                </div>
+                <div class="container col-9">
+                    <table class="table techno">
+                        <thead>
+                          <tr>
+                            <th scope="col">Techno Name</th>
+                            <th scope="col">Techno Image</th>
+                            <th scope="col">Techno Category</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for techno in technos %}
+                            <tr>
+                              <td>{{ techno.name }}</td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
+                              <td>{{ techno.category.name }}</td>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+
+{%  endif %}
+
+{% if name is defined and name == "project" %}
+
+        <div class="container-fluid d-flex">
+                <div class="container col-3">
+                  <div class="col-5 form m-4 rounded">
+                    <h2 class="text-center" style="font-style: italic;">Insertion Project</h2>
+                    {{ form(projectForm) }}
+                  </div>
+                </div>
+        <div class="container col-9 d-flex">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom projet</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for project in projects %}
+                            <tr>
+                              <td>{{ project.name }}</td>
+                              <td>{{project.description}}</td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+
+
+        </div>
+                
+
+
+        {%  endif %}
+
+
+
+
+        
+
+      
+
+
+        {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+        
