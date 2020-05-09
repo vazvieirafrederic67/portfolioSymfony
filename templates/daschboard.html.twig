@@ -28,6 +28,7 @@
                             <tr>
                               <td>{{ category.name }}</td>
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
+                              <td><a href="{{ path('daschboard_update', {"name" : 'category' , "id" : category.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -42,16 +43,18 @@
 
 {% if name is defined and name == "skill" %}
 
+    
+
 
         <div class="container-fluid d-flex">
-            <div class="col-3">
+            <div class="col-2">
                 <div class="col-5 form m-4 rounded">
                   <h2 class="text-center" style="font-style: italic;">Insertion Skills</h2>
                   {{ form(skillForm) }}
                 </div>
             </div>
 
-            <div class="container col-9">
+            <div class="container col-10">
             <table class="table skill">
                 <thead>
                   <tr>
@@ -71,7 +74,11 @@
                       <td>{{ skill.techno.name }}</td>
                       {% for projects in skill.projects %}
                       <td>{{projects.name}}</td>
+                      {% else %}
+                      <td></td>
                       {% endfor %}
+                      <td><a href="{{ path('daschboard_update', {"name" : 'skill' , "id" : skill.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
+                     
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -84,9 +91,28 @@
 
         <div class="container-fluid d-flex">
                 <div class="container col-3">
-                  <div class="col-6 form m-4 rounded">
+                  <div class="form m-4 rounded">
                     <h2 class="text-center" style="font-style: italic;">Insertion Technos</h2>
-                    {{ form(technoForm) }}
+                   
+                    {{ form_start(technoForm) }}
+
+                    <div class="d-flex justify-content-around">
+                      {{ form_label(technoForm.name, null,  {'label_attr' : {'class' : 'text-golden mr-3'}}) }}
+                      {{ form_widget(technoForm.name , { 'attr': { 'class' : 'bg-light rounded shadow p-2'}}) }}
+                    </div>
+                    
+                    <div class="d-flex justify-content-around">
+                      {{ form_label(technoForm.image, null,  {'label_attr' : {'class' : 'text-golden mr-3'}}) }}
+                      {{ form_widget(technoForm.image , { 'attr': { 'class' : 'bg-light rounded shadow p-2'}}) }}
+                    </div>
+                    
+                      
+                      <div class="d-flex justify-content-between">
+                        {{ form_label(technoForm.category, null,  {'label_attr' : {'class' : 'mt-5 text-golden mr-3'}}) }}
+                        {{ form_widget(technoForm.category , { 'attr': { 'style' : 'height:10vh; ' , 'class' : 'mt-5 bg-light rounded shadow d-flex justify-content-around'}}) }}
+                    </div>
+                   
+                    {{ form_end(technoForm) }}
                   </div>    
                 </div>
                 <div class="container col-9">
@@ -104,7 +130,7 @@
                               <td>{{ techno.name }}</td>
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
                               <td>{{ techno.category.name }}</td>
-                            
+                              <td><a href="{{ path('daschboard_update', {"name" : 'techno' , "id" : techno.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -137,6 +163,7 @@
                               <td>{{ project.name }}</td>
                               <td>{{project.description}}</td>
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                              <td><a href="{{ path('daschboard_update', {"name" : 'project' , "id" : project.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                     {% endfor %}
                 </tbody>
               </table>

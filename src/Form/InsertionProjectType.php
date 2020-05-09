@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class InsertionProjectType extends AbstractType
 {
@@ -18,6 +19,7 @@ class InsertionProjectType extends AbstractType
             ->add('description')
             ->add('image')
             ->add('skills',EntityType::class, ['class' => Skill::class, 'choice_label' => 'name'])
+            ->add('save', SubmitType::class);
         ;
     }
 

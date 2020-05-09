@@ -34,3 +34,17 @@ daschboard:
 daschboard_choix:
     path: /daschboard/{name}
     controller: App\Controller\DaschboardAjoutController::daschAjoutAction
+
+
+daschboard_update:
+    path: /daschboard/update/{name}/{id}
+    controller: App\Controller\DaschboardUpdateController::index
+
+
+daschboard_delete:
+    path: /daschboard/update/{name}/{id}
+    controller: App\Controller\DaschboardUpdateController::index
+
+
+
+
