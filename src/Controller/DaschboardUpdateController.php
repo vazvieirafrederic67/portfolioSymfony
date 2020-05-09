@@ -31,7 +31,7 @@ class DaschboardUpdateController extends AbstractController
                     $skill = $form->getData();
                     $manager->persist($skill);
                     $manager->flush();
-                    return $this->redirectToRoute('daschboard');
+                    return $this->redirectToRoute('daschboard',["name" =>$name]);
                 }
                 break;
 
@@ -43,7 +43,7 @@ class DaschboardUpdateController extends AbstractController
                     $category = $form->getData();
                     $manager->persist($category);
                     $manager->flush();
-                    return $this->redirectToRoute('daschboard');
+                    return $this->redirectToRoute('daschboard',["name" =>$name]);
                 }
                 break;
 
@@ -55,7 +55,7 @@ class DaschboardUpdateController extends AbstractController
                     $project = $form->getData();
                     $manager->persist($project);
                     $manager->flush();
-                    return $this->redirectToRoute('daschboard');
+                    return $this->redirectToRoute('daschboard',["name" =>$name]);
                 }
                 break;
 
@@ -67,12 +67,11 @@ class DaschboardUpdateController extends AbstractController
                     $techno = $form->getData();
                     $manager->persist($techno);
                     $manager->flush();
-                    return $this->redirectToRoute('daschboard');
+                    return $this->redirectToRoute('daschboard',["name" =>$name]);
                 }
                 break;
         }
         return $this->render('daschboard_update/index.html.twig',["id"=>$id, "name" =>$name ,"form"=>$form->createView()]);
-
     }
 
 }
