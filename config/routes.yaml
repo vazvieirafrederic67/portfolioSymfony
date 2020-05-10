@@ -21,9 +21,9 @@ techno:
 
 
 
-insertion:
-    path: /insertion
-    controller: App\Controller\DefaultController::insertionAction
+project:
+    path: /project
+    controller: App\Controller\DefaultController::projectAction
 
 
 daschboard:
@@ -42,8 +42,11 @@ daschboard_update:
 
 
 daschboard_delete:
-    path: /daschboard/update/{name}/{id}
-    controller: App\Controller\DaschboardUpdateController::index
+    path: /daschboard/delete/{name}/{id}
+    controller: App\Controller\DaschboardDeleteController::index
+
+
+
 
 
 

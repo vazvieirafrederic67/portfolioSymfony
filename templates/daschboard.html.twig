@@ -8,19 +8,24 @@
 
 
         
-        <div class="container-fluid d-flex">
-            <div class="col-3">
-                    <div class="col-5 form m-4 rounded">
+        <div class="container-fluid d-flex align-items-center" style="height: 80vh;">
+            <div class="col-4">
+                    <div class="col-12 form m-4 rounded">
                       <h2 class="text-center" style="font-style: italic;">Insertion Catégories</h2>
-                      {{ form(categoryForm) }}
+                      {{ form_start(categoryForm) }}
+                            <div class="col-12">{{ form_row(categoryForm.name) }}</div>
+                            <div class="col-12">{{ form_row(categoryForm.image) }}</div>
+                        {{ form_end(categoryForm) }}
                     </div>
             </div>
-            <div class="container col-9">
+            <div class="container col-8">
                     <table class="table category">
                         <thead>
                           <tr>
                             <th scope="col">Category Name</th>
                             <th scope="col">Category Image</th>
+                            <th></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -29,6 +34,7 @@
                               <td>{{ category.name }}</td>
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
                               <td><a href="{{ path('daschboard_update', {"name" : 'category' , "id" : category.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
+                              <td><a href="{{ path('daschboard_delete', {"name" : 'category' , "id" : category.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -46,15 +52,21 @@
     
 
 
-        <div class="container-fluid d-flex">
-            <div class="col-2">
-                <div class="col-5 form m-4 rounded">
-                  <h2 class="text-center" style="font-style: italic;">Insertion Skills</h2>
-                  {{ form(skillForm) }}
+        <div class="container-fluid d-flex align-items-center" style="height: 80vh;">
+            <div class="col-4">
+                <div class="col-12 form m-4 rounded">
+                    <h2 class="text-center" style="font-style: italic;">Insertion Skills</h2>
+                    {{ form_start(skillForm) }}
+                    <div class="col-12">{{ form_row(skillForm.name) }}</div>
+                    <div class="col-12">{{ form_row(skillForm.description) }}</div>
+                    <div class="col-12">{{ form_row(skillForm.image) }}</div>
+                    <div class="col-12">{{ form_row(skillForm.techno) }}</div>
+                    <div class="col-12">{{ form_row(skillForm.projects) }}</div>
+                    {{ form_end(skillForm) }}
                 </div>
             </div>
 
-            <div class="container col-10">
+            <div class="container col-8">
             <table class="table skill">
                 <thead>
                   <tr>
@@ -63,6 +75,8 @@
                     <th scope="col">Skill Image</th>
                     <th scope="col">Technos</th>
                     <th scope="col">Projects</th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,7 +92,7 @@
                       <td></td>
                       {% endfor %}
                       <td><a href="{{ path('daschboard_update', {"name" : 'skill' , "id" : skill.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
-                     
+                      <td><a href="{{ path('daschboard_delete', {"name" : 'skill' , "id" : skill.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -89,39 +103,26 @@
 
 {% if name is defined and name == "techno" %}
 
-        <div class="container-fluid d-flex">
-                <div class="container col-3">
+        <div class="container-fluid d-flex align-items-center" style="height: 80vh;">
+                <div class="container col-4">
                   <div class="form m-4 rounded">
                     <h2 class="text-center" style="font-style: italic;">Insertion Technos</h2>
-                   
                     {{ form_start(technoForm) }}
-
-                    <div class="d-flex justify-content-around">
-                      {{ form_label(technoForm.name, null,  {'label_attr' : {'class' : 'text-golden mr-3'}}) }}
-                      {{ form_widget(technoForm.name , { 'attr': { 'class' : 'bg-light rounded shadow p-2'}}) }}
-                    </div>
-                    
-                    <div class="d-flex justify-content-around">
-                      {{ form_label(technoForm.image, null,  {'label_attr' : {'class' : 'text-golden mr-3'}}) }}
-                      {{ form_widget(technoForm.image , { 'attr': { 'class' : 'bg-light rounded shadow p-2'}}) }}
-                    </div>
-                    
-                      
-                      <div class="d-flex justify-content-between">
-                        {{ form_label(technoForm.category, null,  {'label_attr' : {'class' : 'mt-5 text-golden mr-3'}}) }}
-                        {{ form_widget(technoForm.category , { 'attr': { 'style' : 'height:10vh; ' , 'class' : 'mt-5 bg-light rounded shadow d-flex justify-content-around'}}) }}
-                    </div>
-                   
+                    <div class="col-12">{{ form_row(technoForm.name) }}</div>
+                    <div class="col-12">{{ form_row(technoForm.image) }}</div>
+                    <div class="col-12">{{ form_row(technoForm.category) }}</div>
                     {{ form_end(technoForm) }}
                   </div>    
                 </div>
-                <div class="container col-9">
+                <div class="container col-8">
                     <table class="table techno">
                         <thead>
                           <tr>
                             <th scope="col">Techno Name</th>
                             <th scope="col">Techno Image</th>
                             <th scope="col">Techno Category</th>
+                            <th></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -131,6 +132,7 @@
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
                               <td>{{ techno.category.name }}</td>
                               <td><a href="{{ path('daschboard_update', {"name" : 'techno' , "id" : techno.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
+                              <td><a href="{{ path('daschboard_delete', {"name" : 'techno' , "id" : techno.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -141,20 +143,29 @@
 
 {% if name is defined and name == "project" %}
 
-        <div class="container-fluid d-flex">
-                <div class="container col-3">
-                  <div class="col-5 form m-4 rounded">
+        <div class="container-fluid d-flex align-items-center" style="height: 80vh;">
+                <div class="container col-4">
+                  <div class="col-12 form m-4 rounded">
                     <h2 class="text-center" style="font-style: italic;">Insertion Project</h2>
-                    {{ form(projectForm) }}
+                   
+                    {{ form_start(projectForm) }}
+                    <div class="col-12">{{ form_row(projectForm.name) }}</div>
+                    <div class="col-12">{{ form_row(projectForm.description) }}</div>
+                    <div class="col-12">{{ form_row(projectForm.image) }}</div>
+                    {{ form_end(projectForm) }}
+
                   </div>
                 </div>
-        <div class="container col-9 d-flex">
+        <div class="container col-8 d-flex">
             <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Nom projet</th>
                     <th scope="col">Description</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Skills</th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,24 +174,126 @@
                               <td>{{ project.name }}</td>
                               <td>{{project.description}}</td>
                               <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                              {% for skills in project.skills %}
+                              <td>{{skills.name}}</td>
+                              {% else %}
+                              <td></td>
+                              {% endfor %}
                               <td><a href="{{ path('daschboard_update', {"name" : 'project' , "id" : project.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
+                              <td><a href="{{ path('daschboard_delete', {"name" : 'project' , "id" : project.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                     {% endfor %}
                 </tbody>
               </table>
-
-
-
         </div>
-                
 
 
         {%  endif %}
+          {% if name is not defined %}
 
+      <div class="container-fluid d-flex align-items-start justify-content-around">
 
-
-
+        <div class="col-5">
+          <table class="table skill">
+              <thead>
+                <tr>
+                  <th scope="col">Skill Name</th>
+                  <th scope="col">Skill Description</th>
+                  <th scope="col">Skill Image</th>
+                  <th scope="col">Technos</th>
+                  <th scope="col">Projects</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for skill in skills %}
+                  <tr>
+                    <td>{{ skill.name }}</td>
+                    <td>{{ skill.description }}</td>
+                    <td><img height="50vh;" width="50vw;" alt="" src="{{ skill.image }}"></td>
+                    <td>{{ skill.techno.name }}</td>
+                    {% for projects in skill.projects %}
+                    <td>{{projects.name}}</td>
+                    {% else %}
+                    <td></td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="col-5">
+          <table class="table category">
+            <thead>
+              <tr>
+                <th scope="col">Category Name</th>
+                <th scope="col">Category Image</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                  <td>{{ category.name }}</td>
+                  <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
         
 
+          <table class="mt-4 table">
+            <thead>
+              <tr>
+                <th scope="col">Nom projet</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Skills</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for project in projects %}
+                        <tr>
+                          <td>{{ project.name }}</td>
+                          <td>{{project.description}}</td>
+                          <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                          {% for skills in project.skills %}
+                          <td>{{skills.name}}</td>
+                          {% else %}
+                          <td></td>
+                          {% endfor %}
+                {% endfor %}
+            </tbody>
+          </table>
+
+     
+          <table class="mt-4 table techno">
+            <thead>
+              <tr>
+                <th scope="col">Techno Name</th>
+                <th scope="col">Techno Image</th>
+                <th scope="col">Techno Category</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for techno in technos %}
+                <tr>
+                  <td>{{ techno.name }}</td>
+                  <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
+                  <td>{{ techno.category.name }}</td>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+
+
+       
+
+
+
+      
+
+
+            {%  endif %}
+            
       
 
 

@@ -4,10 +4,10 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 
 class InsertionCategoryType extends AbstractType
@@ -15,13 +15,7 @@ class InsertionCategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('name', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
-                'attr' => ['placeholder' => 'category name']
-                ])
-                
-
+            ->add('name')
             ->add('image')
             ->add('save', SubmitType::class);
         ;

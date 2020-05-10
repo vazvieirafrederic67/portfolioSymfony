@@ -40,7 +40,7 @@ class DefaultController extends AbstractController
     }
 
 
-    public function insertionAction(Request $request, CategoryRepository $categoryRepository, TechnoRepository $technoRepository, SkillRepository $skillRepository){
+    public function projectAction(Request $request, CategoryRepository $categoryRepository, TechnoRepository $technoRepository, SkillRepository $skillRepository){
         $categories = $categoryRepository->findAll();
         //on déclare une nouvelle categorie (vide)
         $category = new Category();

@@ -11,7 +11,7 @@
 .pageComplete{
     
     background-color: rgb(69, 95, 100);
-    height: 90vh;
+    height: 100vh;
     
 }
 .pageSkills{
@@ -116,5 +116,9 @@
    max-width: auto;
 
 }
+
+
+$primary:rgb(13, 134, 94);
+$danger:rgb(126, 98, 6);
 
 @import "../../../bootstrap/scss/bootstrap.scss";
