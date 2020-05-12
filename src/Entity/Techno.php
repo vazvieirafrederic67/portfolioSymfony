@@ -36,6 +36,7 @@ class Techno
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Skill", mappedBy="techno")
+     * 
      */
     private $skill;
 

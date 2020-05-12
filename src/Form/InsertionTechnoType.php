@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class InsertionTechnoType extends AbstractType
 {
@@ -17,16 +18,18 @@ class InsertionTechnoType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'attr' => ['placeholder' => 'techno name']
             ])
-            ->add('image', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+            ->add('image', FileType::class, ['mapped'=>false, 'required' =>false],
+            [
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'attr' => ['placeholder' => 'image']
+
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'choice_label' => 'name'
             ])
             ->add('save', SubmitType::class);

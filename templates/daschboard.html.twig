@@ -4,6 +4,9 @@
 
 
 
+
+
+
 {% if name is defined and name == "category" %}
 
 
@@ -32,7 +35,7 @@
                             {% for category in categories %}
                             <tr>
                               <td>{{ category.name }}</td>
-                              <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~category.image) }}"></td>
                               <td><a href="{{ path('daschboard_update', {"name" : 'category' , "id" : category.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                               <td><a href="{{ path('daschboard_delete', {"name" : 'category' , "id" : category.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
                             </tr>
@@ -84,7 +87,7 @@
                     <tr>
                       <td>{{ skill.name }}</td>
                       <td>{{ skill.description }}</td>
-                      <td><img height="50vh;" width="50vw;" alt="" src="{{ skill.image }}"></td>
+                      <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~skill.image) }}"></td>
                       <td>{{ skill.techno.name }}</td>
                       {% for projects in skill.projects %}
                       <td>{{projects.name}}</td>
@@ -103,6 +106,9 @@
 
 {% if name is defined and name == "techno" %}
 
+        
+
+
         <div class="container-fluid d-flex align-items-center" style="height: 80vh;">
                 <div class="container col-4">
                   <div class="form m-4 rounded">
@@ -110,6 +116,7 @@
                     {{ form_start(technoForm) }}
                     <div class="col-12">{{ form_row(technoForm.name) }}</div>
                     <div class="col-12">{{ form_row(technoForm.image) }}</div>
+
                     <div class="col-12">{{ form_row(technoForm.category) }}</div>
                     {{ form_end(technoForm) }}
                   </div>    
@@ -129,7 +136,7 @@
                             {% for techno in technos %}
                             <tr>
                               <td>{{ techno.name }}</td>
-                              <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~techno.image) }}"></td>
                               <td>{{ techno.category.name }}</td>
                               <td><a href="{{ path('daschboard_update', {"name" : 'techno' , "id" : techno.id}) }}"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                               <td><a href="{{ path('daschboard_delete', {"name" : 'techno' , "id" : techno.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
@@ -173,7 +180,7 @@
                             <tr>
                               <td>{{ project.name }}</td>
                               <td>{{project.description}}</td>
-                              <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                              <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~project.image) }}"></td>
                               {% for skills in project.skills %}
                               <td>{{skills.name}}</td>
                               {% else %}
@@ -208,7 +215,7 @@
                   <tr>
                     <td>{{ skill.name }}</td>
                     <td>{{ skill.description }}</td>
-                    <td><img height="50vh;" width="50vw;" alt="" src="{{ skill.image }}"></td>
+                    <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~skill.image) }}"></td>
                     <td>{{ skill.techno.name }}</td>
                     {% for projects in skill.projects %}
                     <td>{{projects.name}}</td>
@@ -232,14 +239,14 @@
                 {% for category in categories %}
                 <tr>
                   <td>{{ category.name }}</td>
-                  <td><img height="50vh;" width="50vw;" alt="" src="{{ category.image }}"></td>
+                  <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~category.image) }}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
           </table>
         
 
-          <table class="mt-4 table">
+          <table class="mt-5 table">
             <thead>
               <tr>
                 <th scope="col">Nom projet</th>
@@ -253,7 +260,7 @@
                         <tr>
                           <td>{{ project.name }}</td>
                           <td>{{project.description}}</td>
-                          <td><img height="50vh;" width="50vw;" alt="" src="{{ project.image }}"></td>
+                          <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~project.image) }}"></td>
                           {% for skills in project.skills %}
                           <td>{{skills.name}}</td>
                           {% else %}
@@ -264,7 +271,7 @@
           </table>
 
      
-          <table class="mt-4 table techno">
+          <table class="mt-5 table techno">
             <thead>
               <tr>
                 <th scope="col">Techno Name</th>
@@ -276,7 +283,7 @@
                 {% for techno in technos %}
                 <tr>
                   <td>{{ techno.name }}</td>
-                  <td><img height="50vh;" width="50vw;" alt="" src="{{ techno.image }}"></td>
+                  <td><img height="50vh;" width="50vw;" alt="" src="{{ asset('uploads/images/'~techno.image) }}"></td>
                   <td>{{ techno.category.name }}</td>
                 {% endfor %}
             </tbody>

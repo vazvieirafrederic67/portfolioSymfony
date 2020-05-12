@@ -11,6 +11,9 @@ use App\Repository\SkillRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\FormsManager;
+
+
 
 
 
@@ -61,8 +64,12 @@ class DaschboardController extends AbstractController
         $formCategory->handleRequest($request);
         
 
-            //si le formulaire est envoyé, alors faire le code dans le if
-            if($formCategory->isSubmitted()){
+        //si le formulaire est envoyé, alors faire le code dans le if
+        if($formCategory->isSubmitted()){
+            $file = $formCategory->get('image')->getData();
+            if($file) {
+            $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+            $category->setImage($newFilename);
             //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
             $category = $formCategory->getData();
             //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -74,17 +81,23 @@ class DaschboardController extends AbstractController
             //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
             return $this->redirectToRoute('daschboard');
             }
+        }
 
 
-        $skill = new Skill();
-        //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
-        $formSkill = $this->createForm('App\Form\InsertionSkillType',$skill);
-        //on dit au formulaire d'écouter les envois de request
-        $formSkill->handleRequest($request);
+            $skill = new Skill();
+            //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
+            $formSkill = $this->createForm('App\Form\InsertionSkillType',$skill);
+            //on dit au formulaire d'écouter les envois de request
+            $formSkill->handleRequest($request);
             
     
             //si le formulaire est envoyé, alors faire le code dans le if
             if($formSkill->isSubmitted()){
+
+                $file = $formSkill->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $skill->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $skill = $formSkill->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -95,19 +108,24 @@ class DaschboardController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
             }
     
             
         
-        $techno = new Techno();
-        //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
-        $formTechno = $this->createForm('App\Form\InsertionTechnoType',$techno);
-        //on dit au formulaire d'écouter les envois de request
-        $formTechno->handleRequest($request);
+            $techno = new Techno();
+            //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
+            $formTechno = $this->createForm('App\Form\InsertionTechnoType',$techno);
+            //on dit au formulaire d'écouter les envois de request
+            $formTechno->handleRequest($request);
             
-    
             //si le formulaire est envoyé, alors faire le code dans le if
             if($formTechno->isSubmitted()){
+
+                $file = $formTechno->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $techno->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $techno = $formTechno->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -118,17 +136,31 @@ class DaschboardController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
+                
+
             }
+            
+        
+
+
     
-        $project = new Project();
-        //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
-        $formProject = $this->createForm('App\Form\InsertionProjectType',$project);
-        //on dit au formulaire d'écouter les envois de request
-        $formProject->handleRequest($request);
+                $project = new Project();
+                //un créé un nouveau formulaire basé sur une entity (dans ce cas, c'est un job)
+                $formProject = $this->createForm('App\Form\InsertionProjectType',$project);
+                //on dit au formulaire d'écouter les envois de request
+                $formProject->handleRequest($request);
                 
         
-            //si le formulaire est envoyé, alors faire le code dans le if
-            if($formProject->isSubmitted()){
+                //si le formulaire est envoyé, alors faire le code dans le if
+                if($formProject->isSubmitted()){
+
+
+
+                $file = $formProject->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $project->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $project = $formProject->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -139,6 +171,7 @@ class DaschboardController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
             }
 
 
@@ -156,3 +189,8 @@ class DaschboardController extends AbstractController
 
     
 }
+
+
+
+
+

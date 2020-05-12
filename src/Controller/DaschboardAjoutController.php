@@ -11,6 +11,7 @@ use App\Repository\SkillRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\FormsManager;
 
 
 
@@ -34,6 +35,10 @@ class DaschboardAjoutController extends AbstractController
 
                  //si le formulaire est envoyé, alors faire le code dans le if
                 if($formCategory->isSubmitted()){
+                    $file = $formCategory->get('image')->getData();
+                    if($file) {
+                    $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                    $category->setImage($newFilename);
                     //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                     $category = $formCategory->getData();
                     //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -44,6 +49,7 @@ class DaschboardAjoutController extends AbstractController
                     $manager->flush();
                     //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                     return $this->redirectToRoute('daschboard');
+                    }
                 }
                 return $this->render("daschboard.html.twig", ["name" => $name,"categories" => $categories, "categoryForm" => $formCategory->createView()]);
             break;
@@ -60,6 +66,10 @@ class DaschboardAjoutController extends AbstractController
 
             //si le formulaire est envoyé, alors faire le code dans le if
             if($formSkill->isSubmitted()){
+                $file = $formSkill->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $skill->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $skill = $formSkill->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -70,6 +80,7 @@ class DaschboardAjoutController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
             }
 
             return $this->render("daschboard.html.twig", ["name" => $name,"skills" => $skills, "skillForm" => $formSkill->createView()]);
@@ -87,9 +98,12 @@ class DaschboardAjoutController extends AbstractController
             //on dit au formulaire d'écouter les envois de request
             $formTechno->handleRequest($request);
             
-    
             //si le formulaire est envoyé, alors faire le code dans le if
             if($formTechno->isSubmitted()){
+                $file = $formTechno->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $techno->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $techno = $formTechno->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -100,6 +114,7 @@ class DaschboardAjoutController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
             }
 
         return $this->render("daschboard.html.twig", ["name" => $name,"technos" => $technos, "technoForm" => $formTechno->createView()]);
@@ -113,10 +128,12 @@ class DaschboardAjoutController extends AbstractController
             $formProject = $this->createForm('App\Form\InsertionProjectType',$project);
             //on dit au formulaire d'écouter les envois de request
             $formProject->handleRequest($request);
-                
-        
             //si le formulaire est envoyé, alors faire le code dans le if
             if($formProject->isSubmitted()){
+                $file = $formProject->get('image')->getData();
+                if($file) {
+                $newFilename = FormsManager::handleFileUpload($file, $this->getParameter('uploads'));
+                $project->setImage($newFilename);
                 //hydrater mon entity (qui pour le moment est vide) avec les infos de mon formulaire
                 $project = $formProject->getData();
                 //je récupère le manager pour pouvoir sauvegarder mon entity dans la base de données
@@ -127,6 +144,7 @@ class DaschboardAjoutController extends AbstractController
                 $manager->flush();
                 //je redirige vers la route de mon choix (dans ce cas, c'est la route qui a le nom 'home'
                 return $this->redirectToRoute('daschboard');
+                }
             }
         
         return $this->render("daschboard.html.twig", ["name" => $name, "projects" => $projects, "projectForm" => $formProject->createView()]);

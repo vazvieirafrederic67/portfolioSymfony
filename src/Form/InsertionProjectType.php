@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class InsertionProjectType extends AbstractType
 {
@@ -17,22 +18,23 @@ class InsertionProjectType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'attr' => ['placeholder' => 'project name']
             ])
             ->add('description', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'attr' => ['placeholder' => 'description']
             ])
-            ->add('image', TextType::class, [
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+            ->add('image', FileType::class, ['mapped'=>false, 'required' =>false], 
+            [
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'attr' => ['placeholder' => 'image']
             ])
             ->add('skills', EntityType::class, [
                 'class' => Skill::class,
                 'multiple'=>true,
                 'expanded'=>true,
-                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : white'],
+                'label_attr'=>['class'=> 'red-bg', 'style'=> 'color : black'],
                 'choice_label' => 'name',
                 'attr'=>['class'=>'row m-4 d-flex justify-content-around','style'=>'color : black']
             ])

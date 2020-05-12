@@ -4,14 +4,15 @@
 
 
 
+
 <div class="jumbotron d-flex justify-content-around align-items-center" style="height:90vh;">
 
-    {% for techno in technos %}
+    {% for project in projects %}
             
     <div class="card" style="width:18rem;height:30rem">
-            <img class="card-img-center m-2" src="{{ asset('uploads/images/'~techno.image) }}" alt="">
+            <img class="card-img-center m-2" src="{{ asset('uploads/images/'~project.image) }}" alt="">
         <div class="card-body">
-            <p class="card-text">{{ techno.name }}</p>
+            <p class="card-text">{{ project.name }}</p>
         </div>
     </div>
 
